@@ -25,7 +25,7 @@ function getAssignment(req, res){
 function postAssignment(req, res){
     let assignment = new Assignment();
     assignment.id = req.body.id;
-    assignment.nom = req.body.nom;
+    assignment.titre = req.body.titre;
     assignment.dateDeRendu = req.body.dateDeRendu;
     assignment.rendu = req.body.rendu;
 
@@ -36,7 +36,7 @@ function postAssignment(req, res){
         if(err){
             res.send('cant post assignment ', err);
         }
-        res.json({ message: `${assignment.nom} saved!`})
+        res.json({ message: `${assignment.titre} saved!`})
     })
 }
 
@@ -64,7 +64,7 @@ function deleteAssignment(req, res) {
         if (err) {
             res.send(err);
         }
-        res.json({message: `${assignment.nom} deleted`});
+        res.json({message: `${assignment.titre} deleted`});
     })
 }
 

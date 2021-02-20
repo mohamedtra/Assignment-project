@@ -12,20 +12,35 @@ export class AssignmentsService {
   assignments: Assignment[] = [
     {
       id: 1,
-      nom: 'TP1 Web Components à rendre',
+      titre: 'TP1 Web Components ',
+      auteur: 'TRAORE MOHAMED',
       dateDeRendu: new Date('2020-11-17'),
+      matiere: 'djjdjfj',
+      note: '20',
+      remarques: 'Excellent',
+      avatar: 'jdjjdjd',
       rendu: true,
     },
     {
       id: 2,
-      nom: 'TP2 Angular à rendre',
+      titre: 'TP2 Angular',
+      auteur: 'Bah Mamadou Saliou',
       dateDeRendu: new Date('2020-12-13'),
+      matiere: 'djjdjfj',
+      note: '14',
+      remarques: 'Bien',
+      avatar: 'djjdjdj',
       rendu: false,
     },
     {
       id: 3,
-      nom: 'Mini Projet Angular à rendre',
+      titre: 'Mini Projet Angular',
+      auteur: 'Bourek Kamel',
       dateDeRendu: new Date('2021-01-07'),
+      matiere: 'djjdjfj',
+      note: '10',
+      remarques: 'Passable',
+      avatar: 'dsjjdjjz',
       rendu: false,
     },
   ];
@@ -58,7 +73,7 @@ export class AssignmentsService {
     return this.http.get<Assignment>(this.uri + '/' + id)
     .pipe(
       map(a => {
-        a.nom += " MODIFIE DANS PIPE AVEC UN MAP";
+        a.titre += " MODIFIE DANS PIPE AVEC UN MAP";
         return a;
       }),
       tap(a => {

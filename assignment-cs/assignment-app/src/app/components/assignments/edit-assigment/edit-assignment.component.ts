@@ -35,14 +35,14 @@ export class EditAssignmentComponent implements OnInit {
     const id = +this.route.snapshot.params.id;
     this.assignmentsService.getAssignment(id).subscribe((assignment) => {
       this.assignment = assignment;
-      this.nomAssignment = assignment.nom;
+      this.nomAssignment = assignment.titre;
       this.dateDeRendu = assignment.dateDeRendu;
     });
   }
 
   onSaveAssignment() {
     if (this.nomAssignment) {
-      this.assignment.nom = this.nomAssignment;
+      this.assignment.titre = this.nomAssignment;
     }
 
     if (this.dateDeRendu) {
