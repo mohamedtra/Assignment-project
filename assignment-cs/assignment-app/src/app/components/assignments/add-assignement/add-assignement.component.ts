@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Assignment } from 'src/app/model/assignment.model';
 import { AssignmentsService } from 'src/app/services/assignments.service';
@@ -14,20 +15,56 @@ export class AddAssignementComponent implements OnInit {
   // form
   nomDevoir:string;
   dateRendu:Date;
-
-  constructor(private assignmentsService:AssignmentsService,
+  //formGroup: FormGroup
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  constructor(private assignmentsService:AssignmentsService,private formBuilder: FormBuilder,
               private router:Router) { }
 
+ 
   ngOnInit(): void {
+    this.initAssignmentForm();
   }
-  onSubmit() {
-    console.log("onSubmit")
-    const newAssignment = new Assignment();
 
-    newAssignment.titre = this.nomDevoir;
-    newAssignment.dateDeRendu = this.dateRendu;
-    newAssignment.rendu = false;
-    newAssignment.id = Math.ceil(Math.random()*100000);
+  initAssignmentForm() {
+    this.firstFormGroup = this.formBuilder.group({
+      titreCtrl: ['', Validators.required],
+      auteurCtrl: ['', Validators.required],
+      avatarCtrl: [''],
+      dateDeRenduCtrl: [new Date('yyyy-mm-dd'), Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      matiereCtrl: ['', Validators.required],
+      noteCtrl: ['', Validators.required],
+      remarqueCtrl: ['', Validators.required],
+      renduCtrl: [false, Validators.required]
+    });
+    
+  }
+
+  form1(){
+    console.log(this.firstFormGroup.value);
+  }
+
+  form2(){
+    console.log(this.secondFormGroup.value);
+  }
+
+  /* onSubmitAssignmentForm() {
+    const newAssignment = this.firstFormGroup.value;
+    this.assignmentsService.addAssignment(newAssignment).
+      subscribe(message => {
+        console.log(message)
+    })
+    console.log(this.assignmentsService.assignments);
+  } */
+
+  /* onSubmit() {
+    console.log("onSubmit")
+    const newAssignment = this.firstFormGroup.value;
+          this.secondFormGroup.value;
+          newAssignment.id = Math.ceil(Math.random()*100000);
 
 
     //this.nouvelAssignment.emit(newAssignment);
@@ -38,7 +75,7 @@ export class AddAssignementComponent implements OnInit {
       //on veut re-afficher la page d'accueil avec la liste
       this.router.navigate(["/home"]);
     })
-  }
+  } */
 
 }
   

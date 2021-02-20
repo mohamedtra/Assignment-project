@@ -1,28 +1,62 @@
-<div class="container">
-  <a routerLink="/add">
-    <button class="ajouterBtn" mat-flat-button color="accent">
-      Ajouter Devoir
-    </button>
-  </a>
+<div class="rounded shadow bg-white p-5">
+  <div class="row">
+    <div class="col-12 d-flex">
+      <h2 class="font-weight-light"><i class="fas fa-tasks"></i> Assignment</h2>
+
+      <a class="buton-add" routerLink="/add">
+        <button  mat-raised-button color="primary">
+          <mat-icon>add</mat-icon> Ajouter un assignment
+        </button>
+      </a>
+
+    </div>
+  </div>
+  <mat-divider class="mt-1 mb-5 bg-dark"></mat-divider>
+  <div class="container col-12">
+    <mat-card class="example-card" *ngFor="let assignment of assignments">
+      <nav>
+        <a routerLink="/assignment/{{this.assignment.id}}">
+          <mat-card-header (click)="assignmentClique(assignment)">
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{assignment.titre}}</mat-card-title>
+            <mat-card-subtitle>Date de rendu : {{assignment.dateDeRendu |date}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p>
+              Etudiant : {{assignment.titre}}
+            </p>
+            <p appRendu *ngIf="assignment.rendu; else nonSoumis">
+              Devoir intitulé {{assignment.titre}} a été rendu.
+            </p>
+            <ng-template #nonSoumis>
+              <p>Le devoir {{assignment.titre}} n'a pas été rendu.</p>
+            </ng-template>
+            <!-- <p [ngStyle]="{color: getSoldValue(i)}">
+              <span *ngIf="!assignment.rendu">A Rendre</span>
+              <span *ngIf="assignment.rendu">Rendu</span>
+            </p> -->
+            <p>
+              {{assignment.auteur}}
+            </p>
+            <p>
+              {{assignment.note}}
+            </p>
+            <p>
+              {{assignment.remarque}}
+            </p>
+            <p>
+              {{assignment.matiere}}
+            </p>
+            <p>
+              {{assignment.avatar}}
+            </p>
+          </mat-card-content>
+        </a>
+      </nav>
+      <div class="d-flex">
+        <button class="btn btn-primary my-3 mx-auto" (click)="assignmentClique(assignment)">Show assignment</button>
+      </div>
+    </mat-card>
+  </div>
 </div>
-
-<mat-list *ngFor="let assignment of assignments">
-  <nav>
-    <a routerLink="/assignment/{{this.assignment.id}}">
-      <h3 mat-subheader>Date de rendu : {{assignment.dateDeRendu |date}}</h3>
-      <mat-list-item (click)="assignmentClique(assignment)">
-        <p appRendu *ngIf="assignment.rendu; else nonSoumis">
-          Devoir intitulé {{assignment.titre}} a été rendu.
-        </p>
-        <ng-template #nonSoumis>
-          <p>Le devoir {{assignment.titre}} n'a pas été rendu.</p>
-        </ng-template>
-        <mat-divider></mat-divider>
-      </mat-list-item>
-    </a>
-  </nav>
-</mat-list>
-
-<!--
-<app-component-detail [assignementTransmis]="assignmentSelectionne"></app-component-detail>
--->

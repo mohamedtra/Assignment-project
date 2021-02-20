@@ -1,27 +1,88 @@
-<form class="form" #formAssignment>
-  <mat-form-field>
-    <input matInput
-           placeholder="Titre du devoir"
-           [(ngModel)]="nomDevoir"
-           name="titre"
-    >
-  </mat-form-field>
+<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup" (ngSubmit)="form1()" #formone="ngForm">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <mat-form-field>
+				<mat-label>Titre</mat-label>
+				<input matInput formControlName="titreCtrl" required>
+				<mat-error>This field is required</mat-error>
+			</mat-form-field>
 
-  <mat-form-field>
-    <input matInput
-           [matDatepicker]="picker"
+      <mat-form-field>
+				<mat-label>Auteur</mat-label>
+				<input matInput formControlName="auteurCtrl" required>
+				<mat-error>This field is required</mat-error>
+			</mat-form-field>
+
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" formControlName="avatarCtrl" />
+          <label class="custom-file-label" for="inputGroupFile01">Upload file</label>
+        </div>
+      </div>
+      
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker]="picker"
           placeholder="Date de rendu"
-          [(ngModel)]="dateRendu"
-          name="date"
-    >
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+          formControlName="dateDeRenduCtrl"
 
-  <button mat-stroked-button
-          color="primary"
-          (click)="onSubmit(); formAssignment.reset()"
-  >
-    Ajouter un devoir
-  </button>
-</form>
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div>
+        <button type="button" mat-button matStepperNext>Next</button>
+        <button type="submit" mat-button>submit</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup" (ngSubmit)="form2()" #formtwo="ngForm">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" formControlName="matiereCtrl" />
+          <label class="custom-file-label" for="inputGroupFile01">Upload file</label>
+        </div>
+      </div>
+			
+      <mat-form-field>
+				<mat-label>Note</mat-label>
+				<input matInput formControlName="noteCtrl">
+				<mat-error>The input is invalid.</mat-error>
+			</mat-form-field>
+
+      <mat-form-field>
+				<mat-label>Remarque</mat-label>
+				<input matInput formControlName="remarqueCtrl">
+				<mat-error>The input is invalid.</mat-error>
+			</mat-form-field>
+
+      <div class="custom-control custom-switch">
+        <input class="custom-control-input" type="checkbox" id="customSwitch1" formControlName="renduCtrl">
+        <label class="custom-control-label" for="customSwitch1" >
+          <span class="text-success" *ngIf="">Vendu</span>
+          <span class="text-danger" *ngIf="">A vendre</span>
+        </label>
+      </div>
+      <div>
+        <button type="button" mat-button matStepperPrevious>Back</button>
+        <button type="button" mat-button matStepperNext>Next</button>
+         <button type="submit" mat-button>submit</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button type="button" (click)="stepper.reset()">Reset</button>
+      <button mat-button type="button" (click)="formone.ngSubmit.emit();formtwo.ngSubmit.emit()">
+        submit
+        </button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

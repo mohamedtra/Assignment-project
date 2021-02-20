@@ -1,19 +1,18 @@
-.rendu {
-  color:'green';
-  border: 1px solid green;
-  background-color:yellow;
-}
-
-.nonRendu {
-  color:'red';
-  border: 1px solid green;
-}
-
 .container {
-  display:flex;
-  flex-direction: column;
-}
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
-.ajouterBtn {
-  align-self: flex-end;
+}
+.example-card {
+  width: 18rem;
+  /* max-width: 400px; */
+  margin-top: 10px;
+}
+.buton-add {
+  margin-left: auto;
+}
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
 }

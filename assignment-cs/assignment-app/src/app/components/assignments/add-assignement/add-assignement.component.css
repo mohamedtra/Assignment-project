@@ -4,3 +4,17 @@
   margin:5px;
 }
 
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.buton-close-modal {
+  margin-left: auto;
+
+}
+.modal-footer {
+  margin-left: 0
+
+}
+.mat-form-field {
+  margin-top: 16px;
+}
