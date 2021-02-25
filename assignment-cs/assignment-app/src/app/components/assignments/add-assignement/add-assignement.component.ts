@@ -12,7 +12,7 @@ import { AssignmentsService } from 'src/app/services/assignments.service';
   styleUrls: ['./add-assignement.component.css']
 })
 export class AddAssignementComponent implements OnInit {
-  // form
+  newAssignment : Assignment;
   nomDevoir:string;
   dateRendu:Date;
   //formGroup: FormGroup
@@ -29,53 +29,37 @@ export class AddAssignementComponent implements OnInit {
 
   initAssignmentForm() {
     this.firstFormGroup = this.formBuilder.group({
-      titreCtrl: ['', Validators.required],
-      auteurCtrl: ['', Validators.required],
-      avatarCtrl: [''],
-      dateDeRenduCtrl: [new Date('yyyy-mm-dd'), Validators.required]
+      titre: ['', Validators.required],
+      auteur: ['', Validators.required],
+      avatar: [''],
+      dateDeRendu: [new Date('yyyy-mm-dd'), Validators.required]
     });
     this.secondFormGroup = this.formBuilder.group({
-      matiereCtrl: ['', Validators.required],
-      noteCtrl: ['', Validators.required],
-      remarqueCtrl: ['', Validators.required],
-      renduCtrl: [false, Validators.required]
+      matiere: ['', Validators.required],
+      note: ['', Validators.required],
+      remarque: ['', Validators.required],
+      rendu: [false, Validators.required]
     });
     
   }
 
   form1(){
-    console.log(this.firstFormGroup.value);
+    this.newAssignment = this.firstFormGroup.value;
   }
 
   form2(){
-    console.log(this.secondFormGroup.value);
+    this.newAssignment = {...this.newAssignment, ...this.secondFormGroup.value};
   }
 
-  /* onSubmitAssignmentForm() {
-    const newAssignment = this.firstFormGroup.value;
-    this.assignmentsService.addAssignment(newAssignment).
+  onSubmitAssignmentForm() {
+    
+    console.log("ass global", this.newAssignment);
+    this.assignmentsService.addAssignment(this.newAssignment).
       subscribe(message => {
-        console.log(message)
+        console.log(" yes  ",message)
     })
     console.log(this.assignmentsService.assignments);
-  } */
-
-  /* onSubmit() {
-    console.log("onSubmit")
-    const newAssignment = this.firstFormGroup.value;
-          this.secondFormGroup.value;
-          newAssignment.id = Math.ceil(Math.random()*100000);
-
-
-    //this.nouvelAssignment.emit(newAssignment);
-    //this.assignments.push(newAssignment);
-    this.assignmentsService.addAssignment(newAssignment)
-    .subscribe(message => {
-      console.log(message);
-      //on veut re-afficher la page d'accueil avec la liste
-      this.router.navigate(["/home"]);
-    })
-  } */
+  }
 
 }
   
