@@ -1,7 +1,11 @@
 let express = require('express');
+let multer = require('multer');
 let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
+
+
+
 
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -35,6 +39,23 @@ app.use(function (req, res, next) {
   next();
 });
 
+// upload
+
+/* const storage = multer.diskStorage({
+  destination: './uploads', filename: function(req, file, cb){
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+}); */
+
+// init upload
+/* const upload = multer({
+  storage: storage
+
+}).single('') */
+
+
+const uploads = multer({dest:'./public/uploads'});
+
 // Pour les formulaires
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -53,12 +74,13 @@ app.route(prefix + '/assignments/:id')
 
 
 app.route(prefix + '/assignments')
-  .post(assignment.postAssignment)
+  .post(uploads.single('matiere'), assignment.postAssignment)
   .put(assignment.updateAssignment);
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
+
 
 module.exports = app;
 

@@ -19,12 +19,14 @@ export class AddAssignementComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  //  imageData: string;
   constructor(private assignmentsService:AssignmentsService,private formBuilder: FormBuilder,
               private router:Router) { }
 
  
   ngOnInit(): void {
     this.initAssignmentForm();
+    
   }
 
   initAssignmentForm() {
@@ -51,6 +53,21 @@ export class AddAssignementComponent implements OnInit {
     this.newAssignment = {...this.newAssignment, ...this.secondFormGroup.value};
   }
 
+  /* onFileSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.firstFormGroup.patchValue({ image: file});
+    this.secondFormGroup.patchValue({ image: file});
+    const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"];
+    console.log("file selected")
+    if (file && allowedMimeTypes.includes(file.type)) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageData = reader.result as string;
+      }
+      reader.readAsDataURL(file);
+    }
+    
+  } */
   onSubmitAssignmentForm() {
     
     console.log("ass global", this.newAssignment);
@@ -59,6 +76,9 @@ export class AddAssignementComponent implements OnInit {
         console.log(" yes  ",message)
     })
     console.log(this.assignmentsService.assignments);
+    this.firstFormGroup.reset();
+    this.secondFormGroup.reset();
+    
   }
 
 }

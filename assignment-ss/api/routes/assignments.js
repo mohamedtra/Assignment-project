@@ -23,6 +23,7 @@ function getAssignment(req, res){
 
 // Ajout d'un assignment (POST)
 function postAssignment(req, res){
+    console.log("Request File", req.files);
     let assignment = new Assignment();
     assignment.id = req.body.id;
     assignment.titre = req.body.titre;
@@ -34,9 +35,9 @@ function postAssignment(req, res){
     assignment.avatar = req.body.avatar;
     assignment.rendu = req.body.rendu;
     
-
     console.log("POST assignment reçu :");
     console.log(assignment)
+
 
     assignment.save( (err) => {
         if(err){
