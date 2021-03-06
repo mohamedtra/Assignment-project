@@ -5,6 +5,7 @@ import { AssignmentDetailComponent } from '../components/assignments/assignment-
 import { AssignmentsComponent } from '../components/assignments/assignments.component';
 import { LoginComponent } from '../components/assignments/authentication/login/login.component';
 import { EditAssignmentComponent } from '../components/assignments/edit-assigment/edit-assignment.component';
+import { RegisterComponent } from '../components/assignments/register/register/register.component';
 
 import { AuthGuard } from '../shared/auth.guard';
 
@@ -21,6 +22,11 @@ const routes:Routes = [
   {
     path:"login",
     component:LoginComponent
+  },
+
+  {
+    path:"register",
+    component:RegisterComponent
   },
 
   {

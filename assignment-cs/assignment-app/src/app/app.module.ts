@@ -10,10 +10,12 @@ import { AssignmentsModule } from './components/assignments/assignments.module';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     RenduDirective,
+
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HttpClientModule,
     AssignmentsModule,
     MatSlideToggleModule
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
