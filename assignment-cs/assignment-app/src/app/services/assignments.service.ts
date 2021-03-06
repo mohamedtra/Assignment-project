@@ -60,8 +60,8 @@ export class AssignmentsService {
     }
   }
 
-  addAssignment(assignment: Assignment): Observable<any> {
-    this.loggingService.log(assignment, 'ajouté');
+  addAssignment(assignment: FormData): Observable<any> {
+    //this.loggingService.log(assignment, 'ajouté');
     //this.assignments.push(assignment);
     //return of("Assignement ajouté");
     return this.http.post(this.uri, assignment);

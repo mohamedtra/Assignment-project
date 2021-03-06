@@ -30,6 +30,7 @@ export class AddAssignementComponent implements OnInit {
     
   }
 
+
   initAssignmentForm() {
     this.firstFormGroup = this.formBuilder.group({
       titre: ['', Validators.required],
@@ -56,7 +57,7 @@ export class AddAssignementComponent implements OnInit {
     this.newAssignment = {...this.newAssignment, ...this.secondFormGroup.value};
   }
 
-  onSubmitAssignmentForm() {
+ /*  onSubmitAssignmentForm() {
     
     console.log("ass global", this.newAssignment);
     this.assignmentsService.addAssignment(this.newAssignment).
@@ -67,7 +68,30 @@ export class AddAssignementComponent implements OnInit {
     this.firstFormGroup.reset();
     this.secondFormGroup.reset();
     
-  }
+  } */
+
+  uploadedFiles:any = null
+  fileChange(element) {
+      this.uploadedFiles = element.target.files;
+      console.log("files" , element)
+    }
+    onSubmitAssignmentForm() {
+      let formData = new FormData();
+      formData.append("avatar", this.uploadedFiles[0],  this.uploadedFiles[0].name);
+      formData.append("titre", this.newAssignment.titre);
+      formData.append("auteur", this.newAssignment.auteur);
+      formData.append("note", this.newAssignment.note);
+      formData.append("remarques", this.newAssignment.remarques);
+      formData.append("dateDeRendu", this.newAssignment.dateDeRendu.toString());
+      //formData.append("remarques", Boolean.toString(this.newAssignment.rendu))
+      console.log("Data ", this.newAssignment);
+      console.log(formData.get("avatar"));
+      this.assignmentsService.addAssignment(formData).subscribe(
+        message => {
+        console.log(" yes  ",message)
+    })
+     
+    }
 
 
 }
