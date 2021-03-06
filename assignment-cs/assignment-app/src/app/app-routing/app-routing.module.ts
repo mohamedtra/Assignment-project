@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddAssignementComponent } from '../components/assignments/add-assignement/add-assignement.component';
 import { AssignmentDetailComponent } from '../components/assignments/assignment-detail/assignment-detail.component';
 import { AssignmentsComponent } from '../components/assignments/assignments.component';
+import { LoginComponent } from '../components/assignments/authentication/login/login.component';
 import { EditAssignmentComponent } from '../components/assignments/edit-assigment/edit-assignment.component';
 
 import { AuthGuard } from '../shared/auth.guard';
@@ -16,6 +17,12 @@ const routes:Routes = [
     path:"home",
     component:AssignmentsComponent
   },
+
+  {
+    path:"login",
+    component:LoginComponent
+  },
+
   {
     path:"add",
     component:AddAssignementComponent
