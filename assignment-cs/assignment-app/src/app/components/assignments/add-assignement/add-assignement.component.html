@@ -13,13 +13,6 @@
 				<mat-error>This field is required</mat-error>
 			</mat-form-field>
 
-      <div class="input-group mb-3">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" formControlName="avatar" />
-          <label class="custom-file-label" for="inputGroupFile01">Upload file</label>
-        </div>
-      </div>
-
       <mat-form-field>
         <input
           matInput
@@ -38,11 +31,17 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup" (ngSubmit)="form2()" #formtwo="ngForm">
-      <ng-template matStepLabel>Date de rendu</ng-template>
+      <ng-template matStepLabel>Compléments du devoir</ng-template>
       <div class="input-group mb-3">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="matiere" formControlName="matiere" />
-          <label class="custom-file-label" for="inputGroupFile01">Upload file</label>
+          <label class="custom-file-label" for="inputGroupFile01">Image de la matière</label>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="matiere" formControlName="matiere" />
+          <label class="custom-file-label" for="inputGroupFile01">Image du prof correspondant</label>
         </div>
       </div>
 
