@@ -14,7 +14,6 @@ function getAssignments(req, res){
 // Récupérer un assignment par son id (GET)
 function getAssignment(req, res){
     let assignmentId = req.params.id;
-
     Assignment.findOne({id: assignmentId}, (err, assignment) =>{
         if(err){res.send(err)}
         res.json(assignment);
@@ -24,6 +23,7 @@ function getAssignment(req, res){
 // Ajout d'un assignment (POST)
 function postAssignment(req, res){
     console.log("Request File", req.files);
+    console.log("Request File", req.file);
     let assignment = new Assignment();
     assignment.id = req.body.id;
     assignment.titre = req.body.titre;
@@ -34,6 +34,7 @@ function postAssignment(req, res){
     assignment.remarque = req.body.remarque;
     assignment.avatar = req.body.avatar;
     assignment.rendu = req.body.rendu;
+   
     
     console.log("POST assignment reçu :");
     console.log(assignment)

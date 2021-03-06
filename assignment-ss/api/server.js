@@ -1,8 +1,12 @@
 let express = require('express');
-let multer = require('multer');
+//let multer = require('multer');
 let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
+global.__root   = __dirname + '/'; 
+
+let verifyToken = require('./auth/VerifyToken');
+
 
 
 
@@ -10,6 +14,9 @@ let assignment = require('./routes/assignments');
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
+
+
+
 
 // remplacer toute cette chaine par l'URI de connexion à votre propre base dans le cloud s
 const uri = 'mongodb+srv://mtraore:voI4JfizrYdSEZRE@clusterassigments.d1nao.mongodb.net/assignments?retryWrites=true&w=majority';
@@ -34,27 +41,12 @@ mongoose.connect(uri, options)
 // Pour accepter les connexions cross-domain (CORS)
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
 
-// upload
-
-/* const storage = multer.diskStorage({
-  destination: './uploads', filename: function(req, file, cb){
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-}); */
-
-// init upload
-/* const upload = multer({
-  storage: storage
-
-}).single('') */
-
-
-const uploads = multer({dest:'./public/uploads'});
+//const uploads = multer({dest:'./public/uploads'});
 
 // Pour les formulaires
 app.use(bodyParser.urlencoded({extended: true}));
@@ -66,21 +58,25 @@ let port = process.env.PORT || 8010;
 const prefix = '/api';
 
 app.route(prefix + '/assignments')
-  .get(assignment.getAssignments);
+  .get(verifyToken, assignment.getAssignments);
 
 app.route(prefix + '/assignments/:id')
   .get(assignment.getAssignment)
   .delete(assignment.deleteAssignment);
 
-
-app.route(prefix + '/assignments')
-  .post(uploads.single('matiere'), assignment.postAssignment)
+  app.route(prefix + '/assignments')
+  .post(assignment.postAssignment)
   .put(assignment.updateAssignment);
+//app.post(prefix + '/assignments',uploads.single('matiere'), assignment.postAssignment)
+  // .put(assignment.updateAssignment);
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
 
+
+var AuthController = require('./auth/AuthController');
+app.use('/api/auth', AuthController);
 
 module.exports = app;
 
