@@ -7,16 +7,17 @@ import { AssignmentsComponent } from './assignments.component';
 import { AssignmentDetailComponent } from './assignment-detail/assignment-detail.component';
 import { EditAssignmentComponent } from './edit-assigment/edit-assignment.component';
 import { AddAssignementComponent } from './add-assignement/add-assignement.component';
+import { LoginComponent } from './authentication/login/login.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, AddAssignementComponent, AssignmentsComponent, AssignmentDetailComponent, EditAssignmentComponent],
+  declarations: [HeaderComponent, AddAssignementComponent, AssignmentsComponent, AssignmentDetailComponent, EditAssignmentComponent, LoginComponent],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule
   ],
-  exports: [HeaderComponent,AssignmentsComponent, AddAssignementComponent, AssignmentDetailComponent, EditAssignmentComponent]
+  exports: [HeaderComponent,AssignmentsComponent, AddAssignementComponent, AssignmentDetailComponent, EditAssignmentComponent, LoginComponent]
 })
 export class AssignmentsModule { }

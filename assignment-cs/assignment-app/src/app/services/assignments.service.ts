@@ -2,48 +2,14 @@ import { Injectable } from '@angular/core';
 import { Assignment } from '../model/assignment.model';
 import { Observable, of } from 'rxjs';
 import { LoggingService } from './logging.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AssignmentsService {
-  assignments: Assignment[] = [
-    {
-      id: 1,
-      titre: 'TP1 Web Components ',
-      auteur: 'TRAORE MOHAMED',
-      dateDeRendu: new Date('2020-11-17'),
-      matiere: 'djjdjfj',
-      note: '20',
-      remarques: 'Excellent',
-      avatar: 'jdjjdjd',
-      rendu: true,
-    },
-    {
-      id: 2,
-      titre: 'TP2 Angular',
-      auteur: 'Bah Mamadou Saliou',
-      dateDeRendu: new Date('2020-12-13'),
-      matiere: 'djjdjfj',
-      note: '14',
-      remarques: 'Bien',
-      avatar: 'djjdjdj',
-      rendu: false,
-    },
-    {
-      id: 3,
-      titre: 'Mini Projet Angular',
-      auteur: 'Bourek Kamel',
-      dateDeRendu: new Date('2021-01-07'),
-      matiere: 'djjdjfj',
-      note: '10',
-      remarques: 'Passable',
-      avatar: 'dsjjdjjz',
-      rendu: false,
-    },
-  ];
+  assignments: Assignment[] = [];
 
   constructor(
     private loggingService: LoggingService,
@@ -51,10 +17,11 @@ export class AssignmentsService {
   ) {}
 
   uri = 'http://localhost:8010/api/assignments';
+  headers = new HttpHeaders({'x-access-token': localStorage.getItem('token')});
 
   getAssignments(): Observable<Assignment[]> {
     //return of(this.assignments);
-    return this.http.get<Assignment[]>(this.uri)
+    return this.http.get<Assignment[]>(this.uri, {headers: this.headers})
       .pipe(
         catchError(this.handleError<any>("getAssignments"))
       )
@@ -95,7 +62,6 @@ export class AssignmentsService {
 
   addAssignment(assignment: Assignment): Observable<any> {
     this.loggingService.log(assignment, 'ajouté');
-
     //this.assignments.push(assignment);
     //return of("Assignement ajouté");
     return this.http.post(this.uri, assignment);
