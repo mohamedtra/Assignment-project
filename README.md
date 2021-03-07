@@ -1,8 +1,8 @@
 # Assignment-project
 
 # Identifiant de connection pour le prof
-email : michelbuffa@gmail.com
-Mot de Passe : michelbuffa
+### email : michelbuffa@gmail.com
+### Mot de Passe : michelbuffa
 
 # Travail fait par :
 - Mohamed TRAORE
