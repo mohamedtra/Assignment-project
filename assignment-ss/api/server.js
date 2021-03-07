@@ -66,7 +66,7 @@ app.route(prefix + '/assignments/:id')
   .delete(assignment.deleteAssignment);
 
   app.route(prefix + '/assignments')
-  .post(assignment.postAssignment)
+  .post(verifyToken, assignment.postAssignment)
   .put(assignment.updateAssignment);
 //app.post(prefix + '/assignments',uploads.single('matiere'), assignment.postAssignment)
   // .put(assignment.updateAssignment);

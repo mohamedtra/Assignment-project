@@ -9,7 +9,6 @@ export class AuthService {
   constructor() { }
 
   logIn() {
-    this.loggedIn = true;
   }
 
   logOut() {
@@ -17,7 +16,7 @@ export class AuthService {
   }
 
   isAdmin():Promise<any> {
-    const isUserAdmin = new Promise((resolve, reject) => {
+    const isUserAdmin = new Promise((resolve) => {
       resolve(this.loggedIn);
     });
 

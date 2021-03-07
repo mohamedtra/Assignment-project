@@ -40,7 +40,7 @@
       </div>
       <div class="input-group mb-3">
         <div class="custom-file">
-          <input type="file" (change)="fileChange($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="avatar" formControlName="avatar" accept="image/x-png,image/gif,image/jpeg" />
+          <input type="file" (change)="fileChange($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"  formControlName="avatar" name="avatar"  accept="image/x-png,image/gif,image/jpeg" />
           <label class="custom-file-label" for="inputGroupFile01">Image du prof correspondant</label>
         </div>
       </div>
@@ -76,7 +76,7 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button type="button" (click)="stepper.reset()">Reset</button>
-      <button mat-button type="button" (click)="onSubmitAssignmentForm()">
+      <button router-link ="/home" mat-button type="button" (click)="onSubmitAssignmentForm()">
         submit
         </button>
     </div>

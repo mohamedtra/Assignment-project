@@ -35,11 +35,11 @@ export class AddAssignementComponent implements OnInit {
     this.firstFormGroup = this.formBuilder.group({
       titre: ['', Validators.required],
       auteur: ['', Validators.required],
-      avatar: [''],
       dateDeRendu: [new Date('yyyy-mm-dd'), Validators.required]
     });
     this.secondFormGroup = this.formBuilder.group({
       matiere: ['', Validators.required],
+      avatar: ['', Validators.required],
       note: ['', Validators.required],
       remarque: ['', Validators.required],
       rendu: [false, Validators.required]
@@ -88,8 +88,10 @@ export class AddAssignementComponent implements OnInit {
       console.log(formData.get("avatar"));
       this.assignmentsService.addAssignment(formData).subscribe(
         message => {
-        console.log(" yes  ",message)
-    })
+        console.log(" yes  ",message);
+        this.router.navigate(["/home"]);
+    });
+    
      
     }
 

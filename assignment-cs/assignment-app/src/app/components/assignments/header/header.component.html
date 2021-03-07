@@ -11,15 +11,14 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/home">Home</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false"> Administrastion</a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Dashboard</a>
-            <div class="dropdown-divider"></div>
-            <mat-slide-toggle color="primary" (click)="logInOut()">Log in</mat-slide-toggle>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register"><span>S'inscrire</span></a>
         </li>
+        <li class="nav-item">
+          <button (click)="logOut()">Deconnexion</button>
+        </li>
+       
+        
       </ul>
     </div>
   </div>
