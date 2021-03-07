@@ -61,36 +61,18 @@ export class AssignmentsService {
   }
 
   addAssignment(assignment: FormData): Observable<any> {
-    //this.loggingService.log(assignment, 'ajouté');
-    //this.assignments.push(assignment);
-    //return of("Assignement ajouté");
-    return this.http.post(this.uri, assignment);
+
+    return this.http.post(this.uri, assignment, {headers: this.headers});
   }
 
   updateAssignment(assignment: Assignment): Observable<any> {
     this.loggingService.log(assignment, 'modifié');
-    /*
-    this.assignments.forEach((a, index) => {
-      if(assignment === a) {
-        this.assignments[index] = a;
-      }
-    });
-    return of("Assignement ajouté");
-    */
+
     return this.http.put<Assignment>(this.uri, assignment);
   }
 
   deleteAssignment(assignment: Assignment): Observable<any> {
     this.loggingService.log(assignment, 'supprimé');
-    /*
-    this.assignments.forEach((a, index) => {
-      if(assignment === a) {
-        this.assignments.splice(index, 1);
-      }
-    });
-
-    return of("Assignement supprimé");
-    */
     return this.http.delete(this.uri + '/' + assignment._id);
   }
 }

@@ -72,7 +72,8 @@ export class AddAssignementComponent implements OnInit {
 
   uploadedFiles:any = null
   fileChange(element) {
-      this.uploadedFiles = element.target.files;
+    
+      this.uploadedFiles = element.srcElement.files;
       console.log("files" , element)
     }
     onSubmitAssignmentForm() {
