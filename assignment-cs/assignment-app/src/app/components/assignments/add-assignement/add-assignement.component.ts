@@ -77,15 +77,17 @@ export class AddAssignementComponent implements OnInit {
     }
     onSubmitAssignmentForm() {
       let formData = new FormData();
-      formData.append("avatar", this.uploadedFiles[0],  this.uploadedFiles[0].name);
+      formData.append("avatar", this.uploadedFiles[0],  "test.jpg");
+      formData.append("assignment", JSON.stringify(this.newAssignment))
+      /* formData.append("avatar", this.uploadedFiles[0],  this.uploadedFiles[0].name);
       formData.append("titre", this.newAssignment.titre);
       formData.append("auteur", this.newAssignment.auteur);
       formData.append("note", this.newAssignment.note);
       formData.append("remarques", this.newAssignment.remarques);
-      formData.append("dateDeRendu", this.newAssignment.dateDeRendu.toString());
+      formData.append("dateDeRendu", this.newAssignment.dateDeRendu.toString()); */
       //formData.append("remarques", Boolean.toString(this.newAssignment.rendu))
-      console.log("Data ", this.newAssignment);
-      console.log(formData.get("avatar"));
+      //console.log("Data ", this.newAssignment);
+      console.log(formData.get("titre"));
       this.assignmentsService.addAssignment(formData).subscribe(
         message => {
         console.log(" yes  ",message);

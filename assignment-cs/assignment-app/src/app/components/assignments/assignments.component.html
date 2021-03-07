@@ -4,7 +4,7 @@
       <h2 class="font-weight-light"><i class="fas fa-tasks"></i> Assignment</h2>
 
       <a class="buton-add" routerLink="/add">
-        <button  mat-raised-button color="primary">
+        <button mat-raised-button color="primary">
           <mat-icon>add</mat-icon> Ajouter un assignment
         </button>
       </a>
@@ -13,50 +13,55 @@
   </div>
   <mat-divider class="mt-1 mb-5 bg-dark"></mat-divider>
   <div class="container col-12">
-    <mat-card class="example-card" *ngFor="let assignment of assignments">
-      <nav>
-        <a routerLink="/assignment/{{this.assignment.id}}">
-          <mat-card-header (click)="assignmentClique(assignment)">
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{assignment.titre}}</mat-card-title>
-            <mat-card-subtitle>Date de rendu : {{assignment.dateDeRendu |date}}</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-          <mat-card-content>
-            <p>
-              Etudiant : {{assignment.titre}}
-            </p>
-            <p appRendu *ngIf="assignment.rendu; else nonSoumis">
-              Devoir intitulé {{assignment.titre}} a été rendu.
-            </p>
-            <ng-template #nonSoumis>
-              <p>Le devoir {{assignment.titre}} n'a pas été rendu.</p>
-            </ng-template>
-            <!-- <p [ngStyle]="{color: getSoldValue(i)}">
+    <mat-card class="example-card" *ngFor="let assignment of assignments " (click)="assignmentClique(assignment)">
+
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{assignment.titre}}</mat-card-title>
+        <mat-card-subtitle>Date de rendu : {{assignment.dateDeRendu |date}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          Etudiant : {{assignment.titre}}
+        </p>
+        <p appRendu *ngIf="assignment.rendu; else nonSoumis">
+          Devoir intitulé {{assignment.titre}} a été rendu.
+        </p>
+        <ng-template #nonSoumis>
+          <p>Le devoir {{assignment.titre}} n'a pas été rendu.</p>
+        </ng-template>
+        <!-- <p [ngStyle]="{color: getSoldValue(i)}">
               <span *ngIf="!assignment.rendu">A Rendre</span>
               <span *ngIf="assignment.rendu">Rendu</span>
             </p> -->
-            <p>
-              {{assignment.auteur}}
-            </p>
-            <p>
-              {{assignment.note}}
-            </p>
-            <p>
-              {{assignment.remarque}}
-            </p>
-            <p>
-              {{assignment.matiere}}
-            </p>
-            <p>
-              {{assignment.avatar}}
-            </p>
-          </mat-card-content>
-        </a>
-      </nav>
-      <div class="d-flex">
-        <button class="btn btn-primary my-3 mx-auto" (click)="assignmentClique(assignment)">Show assignment</button>
+        <p>
+          {{assignment.auteur}}
+        </p>
+        <p>
+          {{assignment.note}}
+        </p>
+        <p>
+          {{assignment.remarque}}
+        </p>
+        <p>
+          {{assignment.matiere}}
+        </p>
+        <p>
+          {{assignment.avatar}}
+        </p>
+      </mat-card-content>
+      <div class="text-center">
+        <a mat-button type="button" (click)="assignmentClique(assignment)">voir assignment</a>
       </div>
+     <!--  <nav>
+        <a routerLink="/assignment/{{this.assignment.id}}">
+          <div class="d-flex">
+            <button class="btn btn-primary my-3 mx-auto" (click)="assignmentClique(assignment)">Show assignment</button>
+          </div>
+        </a>
+      </nav> -->
+      
     </mat-card>
   </div>
 </div>

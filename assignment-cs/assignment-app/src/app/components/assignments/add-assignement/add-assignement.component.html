@@ -34,13 +34,13 @@
       <ng-template matStepLabel>Compléments du devoir</ng-template>
       <div class="input-group mb-3">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="matiere" formControlName="matiere" />
+          <input type="file"  class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="matiere" formControlName="matiere" name="matiere" accept="image/x-png,image/gif,image/jpeg"/>
           <label class="custom-file-label" for="inputGroupFile01">Image de la matière</label>
         </div>
       </div>
       <div class="input-group mb-3">
         <div class="custom-file">
-          <input type="file" (change)="fileChange($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"  formControlName="avatar" name="avatar"  accept="image/x-png,image/gif,image/jpeg" />
+          <input type="file" (change)="fileChange($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"  formControlName="avatar" name="avatar" accept="image/x-png,image/gif,image/jpeg"/>
           <label class="custom-file-label" for="inputGroupFile01">Image du prof correspondant</label>
         </div>
       </div>

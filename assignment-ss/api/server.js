@@ -53,6 +53,7 @@ app.use(function (req, res, next) {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+
 let port = process.env.PORT || 8010;
 
 // les routes
@@ -66,7 +67,7 @@ app.route(prefix + '/assignments/:id')
   .delete(assignment.deleteAssignment);
 
   app.route(prefix + '/assignments')
-  .post(verifyToken, assignment.postAssignment)
+  .post(assignment.postAssignment)
   .put(assignment.updateAssignment);
 //app.post(prefix + '/assignments',uploads.single('matiere'), assignment.postAssignment)
   // .put(assignment.updateAssignment);
@@ -75,7 +76,7 @@ app.route(prefix + '/assignments/:id')
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
 
-
+app.use('/static', express.static('uploads'));
 var AuthController = require('./auth/AuthController');
 app.use('/api/auth', AuthController);
 

@@ -34,7 +34,7 @@ const routes:Routes = [
     component:AddAssignementComponent
   },
   {
-    path:"assignment/:id",
+    path:"assignments/:id",
     component:AssignmentDetailComponent
   },
   {

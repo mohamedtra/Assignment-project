@@ -37,40 +37,51 @@ function getAssignment(req, res) {
 
 // Ajout d'un assignment (POST)
 function postAssignment(req, res) {
-    console.log("Request File", req.files);
-    //console.log("Request File", req.file);
+
     var path = '';
     upload(req, res, function (err) {
         if (err) {
             console.log(err);
             return res.status(422).send("an Error occured")
         }
+        path = req.file.path;
+
+        //let assignment = new Assignment();
+        /* console.log("reeq " , req); */
+        let assignment = new Assignment(JSON.parse(req.body.assignment))
+        /* assignment.id = req.body.id;
+        assignment.titre = req.body.titre;
+        assignment.auteur = req.body.auteur;
+        assignment.dateDeRendu = req.body.dateDeRendu;
+        assignment.matiere = req.body.matiere;
+        assignment.note = req.body.note;
+        assignment.remarque = req.body.remarque;
+        assignment.avatar = req.body.avatar;
+        assignment.rendu = req.body.rendu; */
+    
+    
+        console.log("POST assignment reçu :");
+        //console.log(assignment)
+    
+    
+        assignment.save((err) => {
+            if (err) {
+                res.json({
+                    error : true,
+                    message : 'cant post assignment'
+                })
+                /* res.send('cant post assignment ', err); */
+            }
+            res.json({
+                error : true,
+                message : 'assignment saved!',
+                assignment: assignment
+            })
+            //res.json({ message: `${assignment.titre} saved!` })
+        })
 
     })
 
-    console.log("reeq " , req.body);
-    let assignment = new Assignment();
-    assignment.id = req.body.id;
-    assignment.titre = req.body.titre;
-    assignment.auteur = req.body.auteur;
-    assignment.dateDeRendu = req.body.dateDeRendu;
-    assignment.matiere = req.body.matiere;
-    assignment.note = req.body.note;
-    assignment.remarque = req.body.remarque;
-    assignment.avatar = req.body.avatar;
-    assignment.rendu = req.body.rendu;
-
-
-    console.log("POST assignment reçu :");
-    console.log(assignment)
-
-
-    assignment.save((err) => {
-        if (err) {
-            res.send('cant post assignment ', err);
-        }
-        res.json({ message: `${assignment.titre} saved!` })
-    })
 }
 
 // Update d'un assignment (PUT)

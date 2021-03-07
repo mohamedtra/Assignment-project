@@ -64,7 +64,7 @@ export class AssignmentsService {
     //this.loggingService.log(assignment, 'ajouté');
     //this.assignments.push(assignment);
     //return of("Assignement ajouté");
-    return this.http.post(this.uri, assignment, {headers: this.headers});
+    return this.http.post(this.uri, assignment);
   }
 
   updateAssignment(assignment: Assignment): Observable<any> {
