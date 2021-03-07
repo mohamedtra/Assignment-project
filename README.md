@@ -11,7 +11,7 @@ Le but de ce mini projet était d'améliorer le rendu des assignments.
 Fonctionnalités de l'application :
 
 ## 1. Gestion des login/password : Avant de pouvoir utiliser l'application, il faut commencer par s'authentifier. 
-Pour ce faire, il faut : 
+Pour le faire, il faut : 
 - Cliquer sur le bouton se connecter et après entrer vos identifiants et votre mot de passe 
 - Si vous n'êtes pas inscrit, vous avez la possibilité de vous inscrire en cliquant sur s'inscrire
 
@@ -35,5 +35,6 @@ Une fois que vous êtes authentifier, il vous suffit de :
 	* Submit : Soumettre votre travail
 
 ## 3. Home : affichage de la liste des Assignments :
+	Dans le home on retrouve un récapitulatif de toute les assigment qui on été rendus :
 	* Le titre, la date, l'élève, une image illustrant la matière, photo avatar du prof en petit en haut à gauche.
 	* show detail : La vue détails montrera en plus les remarques, la note s'il a été rendu.
