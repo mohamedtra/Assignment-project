@@ -36,5 +36,5 @@ Une fois que vous êtes authentifier, il vous suffit de :
 
 ## 3. Home : affichage de la liste des Assignments :
 	Dans le home on retrouve un récapitulatif de toute les assigment qui on été rendus :
-	* Le titre, la date, l'élève, une image illustrant la matière, photo avatar du prof en petit en haut à gauche.
-	* show detail : La vue détails montrera en plus les remarques, la note s'il a été rendu.
+	*Le titre, la date, l'élève, une image illustrant la matière, photo avatar du prof en petit en haut à gauche.
+	*show detail : La vue détails montrera en plus les remarques, la note s'il a été rendu.
