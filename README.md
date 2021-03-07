@@ -34,6 +34,6 @@ Une fois que vous êtes authentifier, il vous suffit de :
 	* Reset : Tout abandonner 
 	* Submit : Soumettre votre travail
 
-## 3. Home : affichage de la liste des Assignments 
+## 3. Home : affichage de la liste des Assignments :
 	* Le titre, la date, l'élève, une image illustrant la matière, photo avatar du prof en petit en haut à gauche.
 	* show detail : La vue détails montrera en plus les remarques, la note s'il a été rendu.
